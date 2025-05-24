@@ -1,0 +1,5 @@
+digraph "CFG for 'main' function" {
+	label="CFG for 'main' function";
+
+	Node0x556fed31bf20 [shape=record,label="{%0:\l  %1 = alloca i32, align 4\l  %2 = alloca [5 x i32], align 16\l  %3 = alloca i32, align 4\l  store i32 0, i32* %1, align 4\l  %4 = bitcast [5 x i32]* %2 to i8*\l  call void @llvm.memcpy.p0i8.p0i8.i64(i8* %4, i8* bitcast ([5 x i32]*\l... @_ZZ4mainE4data to i8*), i64 20, i32 16, i1 false)\l  %5 = getelementptr inbounds [5 x i32], [5 x i32]* %2, i32 0, i32 0\l  %6 = call i32 @_Z9sum_arrayPii(i32* %5, i32 5)\l  store i32 %6, i32* %3, align 4\l  %7 = load i32, i32* %3, align 4\l  %8 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([10 x i8], [10\l... x i8]* @.str, i32 0, i32 0), i32 %7)\l  ret i32 0\l}"];
+}
