@@ -19,7 +19,7 @@ sudo apt install clang llvm graphviz
 
 Исходный код
 Программа на языке C:
-
+```c
 #include <stdio.h>
 
 int square(int x) {
@@ -32,6 +32,7 @@ int main() {
     printf("%d\n", b);
     return 0;
 }
+```
 Сохранена в файл main.c.
 
 ![изображение](https://github.com/user-attachments/assets/696a8331-166d-4e3a-87e1-6f1d3f306a48)
@@ -149,7 +150,7 @@ xdg-open cfg.main.png
 
 Доп. Задание В1
 1. Код для оптимизации
-
+```c
 #include <iostream>
 #include <complex>
 #include <cmath>
@@ -158,6 +159,7 @@ int main() {
     std::cout << "Модуль: " << std::abs(z) << std::endl;
     return 0;
           }
+```
 
 3. Построение AST
 
@@ -192,7 +194,7 @@ clang++ -O0 -emit-llvm -S main.cpp -o main.ll
 Доп. Задание В2
 
 Код:
-
+```c
 #include <stdio.h>
 
 struct Point {
@@ -207,6 +209,7 @@ int main() {
     printPoint(p);
     return 0;
 }
+```
 
 Скомпилируем с помощью clang:
 
@@ -227,7 +230,7 @@ clang -S -emit-llvm -o main.ll main.c
 Доп. Задание В3
 
 Код:
-
+```c
 #include <iostream>
 #include <map>
 #include <string>
@@ -242,6 +245,7 @@ int main() {
     }
     return 0;
 }
+```
 
 clang++ -Xclang -ast-dump -fsyntax-only main.cpp
 
@@ -268,6 +272,7 @@ clang++ -std=c++17 -S -emit-llvm main.cpp -o main.ll
 Доп. Задание В4
 
 Код:
+```c
 // Прототип функции
 int sum(int a, int b);
 // Функция, использующая прототип
@@ -279,6 +284,7 @@ int main() {
 int sum(int a, int b) {
     return a + b;
 }
+```
 
 clang -Xclang -ast-dump -fsyntax-only main.cpp
 
@@ -299,7 +305,7 @@ IR опускает "синтаксический сахар" и фокусир�
 Доп. Задание В5
 
 Код:
-// main.cpp
+```c
 const int LIMIT = 100;
 int check(int x) {
     if (x < LIMIT) {
@@ -308,6 +314,7 @@ int check(int x) {
         return 0;
     }
 }
+```
 
 clang -O2 -S -emit-llvm main.cpp -o main.ll
 
@@ -320,11 +327,12 @@ clang -O2 -S -emit-llvm main.cpp -o main.ll
 Доп. Задание В6
 
 Код:
-// main.cpp
+```c
 const double PI = 3.1415;
 double circle_area(double r) {
     return PI * r * r;
 }
+```
 
 clang -O2 -S -emit-llvm main.cpp -o main.ll
 
@@ -339,7 +347,8 @@ clang -O2 -S -emit-llvm main.cpp -o main.ll
 Доп. Задание В7
 
 Код:
-// main.cpp
+
+```c
 #include <stdio.h>
 
 int main() {
@@ -347,6 +356,7 @@ int main() {
     putchar(msg[1]); // Ожидается 'e'
     return 0;
 }
+```
 
 clang -S -emit-llvm main.cpp -o main.ll
 
@@ -359,13 +369,14 @@ Clang  хранит строковый литерал в глобальной с
 Доп. Задание В8
 
 Код:
-
+```c
 enum Color { Red, Green, Blue };
 
 int getColorValue() {
     Color c = Green;
     return c;
 }
+```
 
 clang -S -emit-llvm main.cpp -o main.ll
 
@@ -378,13 +389,14 @@ clang -S -emit-llvm main.cpp -o main.ll
 Доп. Задание В9
 
 Код:
-
+```c
 enum Color { Red, Green, Blue };
 
 int getColorValue() {
     Color c = Green;
     return c;
 }
+```
 
 clang++ -emit-llvm -S -O0 main.cpp -o main.ll
 
@@ -412,11 +424,13 @@ fdiv double %x, 2.0 может быть заменена на: fmul double %x, 0
 Доп. Задание В10
 
 Код:
+```c
 int main() {
     auto f = [](int x) { return x * x; };
     int result = f(3);
     return result;
 }
+```
 
 clang++ -O1 -S -emit-llvm lambda.cpp -o lambda.ll
 
@@ -436,6 +450,7 @@ dot -Tpng cfg.main.dot -o cfg.main.png
 Доп. Задание В11
 
 Код:
+```c
 #include <stdio.h>
 int sum_array(int* arr, int n) {
     int sum = 0;
@@ -449,6 +464,7 @@ int main() {
     printf("Sum = %d\n", total);
     return 0;
 }
+```
 
 clang -S -emit-llvm test.cpp -o test.ll
 
